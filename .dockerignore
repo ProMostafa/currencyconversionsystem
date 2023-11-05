@@ -1,0 +1,10 @@
+.git
+.git/*
+.gitignore
+.dockerignore
+Dockerfile
+*__pycache__/*
+.pytest_cache
+.pytest_cache/*
+*.log
+*.db

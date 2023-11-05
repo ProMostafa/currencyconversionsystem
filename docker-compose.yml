@@ -1,0 +1,67 @@
+version: '3.7'
+services:
+  django:
+    build: .
+    ports:
+      - "8000:8000" # Expose the Django development server port
+    command: >
+      sh -c "
+      ./manage.py migrate &&
+      ./manage.py runserver 0.0.0.0:8000 --noreload"
+
+    volumes:
+      - .:/currencyconversionsystem
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+      - celery
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6378:6378"
+
+  celery:
+    build: .
+    volumes:
+      - .:/currencyconversionsystem
+    command: celery -A configuration worker --loglevel=info
+    depends_on:
+      - redis
+
+  celery_beat:
+    build: .
+    volumes:
+      - .:/currencyconversionsystem
+
+    command: celery -A configuration beat --loglevel=info
+    depends_on:
+      - redis
+
+  celery_monitoring:
+    build: .
+    ports:
+      - "5555:5555"
+    command: celery -A configuration flower
+    volumes:
+      - .:/currencyconversionsystem
+    depends_on:
+      - celery
+      - celery_beat
+
+  db:
+    image: postgres:13
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+    expose:
+      - 5432
+
+volumes:
+  postgres_data:
