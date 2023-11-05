@@ -38,13 +38,6 @@ class ExchangeRateSerializerTest(TestCase):
         serializer = ExchangeRateSerializer(data=data)
         with self.assertRaises(CurrencyNotSupported):
             serializer.is_valid(raise_exception=True)
-        # self.assertFalse(serializer.is_valid())
-        # from_currency_errors = serializer.errors.get("non_field_errors", [])
-        # self.assertTrue(from_currency_errors)
-        # self.assertEqual(
-        #     from_currency_errors[0],
-        #     "Source currency does not exist in the System Currencies supported.",
-        # )
 
     def test_invalid_to_currency(self):
         data = {
@@ -56,12 +49,6 @@ class ExchangeRateSerializerTest(TestCase):
         serializer = ExchangeRateSerializer(data=data)
         with self.assertRaises(CurrencyNotSupported):
             serializer.is_valid(raise_exception=True)
-        # to_currency_errors = serializer.errors.get("non_field_errors", [])
-        # self.assertTrue(to_currency_errors)
-        # self.assertEqual(
-        #     to_currency_errors[0],
-        #     "Target currency does not exist in the System Currencies supported.",
-        # )
 
     def test_invalid_rate_exchange(self):
         data = {
