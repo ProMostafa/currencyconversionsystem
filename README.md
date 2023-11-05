@@ -59,7 +59,7 @@ main project database
 
 ## redis
 use redis in two usecase 
-1. Using as Brocker for celery
+1. Using as Broker for celery
 1. implement simple cache mechanism (later)
 2. using redis lock to prevent race condition (if occurrence later)
 
@@ -81,4 +81,4 @@ use for document APIs
 ## use test driven development (TDD) in development
 Add simple unit test just example not all use case for conversion operation that cover simple use case
 
-## Now can go to installation guide [link](https://github.com/ProMostafa/candidates/blob/master/installation_guide.md)
+## Now can go to installation guide [link](https://github.com/ProMostafa/currencyconversionsystem/blob/main/installation_guide.md)
