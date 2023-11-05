@@ -1,6 +1,6 @@
 
 # Approach one: using docker & docker compose
-### Installing docker & docker compose  **(still have small bug will fix it)**
+### Installing docker & docker compose
 Please refer to this [link](https://support.netfoundry.io/hc/en-us/articles/360057865692-Installing-Docker-and-docker-compose-for-Ubuntu-20-04) to install docker and docker compose
 
 ### Clone currencyconversionsystem repository
@@ -13,6 +13,10 @@ Please refer to this [link](https://support.netfoundry.io/hc/en-us/articles/3600
 for build images 
 ```bash
 docker-compose build
+```
+for run unit tests
+```bash
+docker-compose run test-runner
 ```
 for run images
 ```bash
