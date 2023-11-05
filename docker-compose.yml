@@ -28,6 +28,9 @@ services:
     volumes:
       - .:/currencyconversionsystem
     command: celery -A configuration worker --loglevel=info
+
+    env_file:
+      - .env
     depends_on:
       - redis
 
@@ -37,6 +40,9 @@ services:
       - .:/currencyconversionsystem
 
     command: celery -A configuration beat --loglevel=info
+    env_file:
+      - .env
+
     depends_on:
       - redis
 
@@ -47,6 +53,8 @@ services:
     command: celery -A configuration flower
     volumes:
       - .:/currencyconversionsystem
+    env_file:
+      - .env
     depends_on:
       - celery
       - celery_beat

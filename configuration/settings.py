@@ -213,3 +213,7 @@ LOGGING = {
         "level": "DEBUG",
     },
 }
+
+# Enable debugging for Celery
+CELERYD_HIJACK_ROOT_LOGGER = False
+CELERYD_LOG_LEVEL = "DEBUG"
