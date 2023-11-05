@@ -15,7 +15,7 @@ from exchangerates.tasks import fetch_exchange_rates, update_conversion_status
 
 class FetchExchangeRatesTest(TestCase):
     def test_fetch_exchange_rates_that_supported(self):
-        settings.MODE = ""
+        settings.RUNNINGMODE = ""
         egp_currency = Currency.objects.create(
             code="EGP",
             name="Egyptian pound",
@@ -61,7 +61,7 @@ class UpdateConvertionStatusTest(TestCase):
         )
         self.permanent_status = CONVERSION_STATUS[0][0]
         self.temporary_status = CONVERSION_STATUS[1][1]
-        settings.MODE = ""
+        settings.RUNNINGMODE = ""
 
     def test_update_convertion_status_to_permanent_after_48h(self):
         egp_to_usd = CurrencyConversion.objects.create(

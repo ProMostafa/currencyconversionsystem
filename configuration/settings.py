@@ -34,7 +34,8 @@ ALLOWED_HOSTS = []
 # PMS Config
 DECIMAL_PLACES = 5
 MAX_DIGITS = 10
-APP_MODE = os.environ.get("MODE", "test")
+# RUNNINGMODE = os.environ.get("MODE", "test")
+RUNNINGMODE = os.environ.get("MODE", "test")
 # Timezone
 TIME_ZONE = "Africa/Cairo"
 USE_TZ = True
@@ -117,7 +118,6 @@ DATABASES = {
     }
 }
 
-
 REDIS_SERVER_HOST = os.environ.get("REDIS_SERVICE_HOST", "")
 REDIS_SERVER_PORT = os.environ.get("REDIS_SERVICE_PORT", "")
 
@@ -136,11 +136,11 @@ CELERY_BEAT_SCHEDULE = {
     "update_exchange_rates": {
         "task": "exchangerates.tasks.fetch_exchange_rates",
         # Schedule the task to run every hour (3600 seconds)
-        "schedule": 120 if APP_MODE else 3600,
+        "schedule": 120 if RUNNINGMODE else 3600,
     },
     "update_conversion_status": {
         "task": "exchangerates.tasks.update_conversion_status",
-        "schedule": timedelta(minutes=2) if APP_MODE else timedelta(hours=24),
+        "schedule": timedelta(minutes=2) if RUNNINGMODE else timedelta(hours=24),
     },
 }
 

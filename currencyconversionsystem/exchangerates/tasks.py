@@ -54,7 +54,7 @@ def update_conversion_status():
         permanent_status = CONVERSION_STATUS[0][0]
         temporary_status = CONVERSION_STATUS[1][1]
         # Just for run app in test mode
-        if settings.APP_MODE == "test":
+        if settings.RUNNINGMODE == "test":
             two_days_ago = timezone.now() - timezone.timedelta(minutes=2)
         else:
             two_days_ago = timezone.now() - timezone.timedelta(hours=48)

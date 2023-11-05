@@ -4,6 +4,6 @@ from exchangerates.tests.mocked.exchange_rate_api import MockedExchangeRatesAPI
 
 
 def get_exchangerates_api():
-    if settings.APP_MODE == "test":
-        return MockedExchangeRatesAPI
-    return ExchangeRatesAPI
+    if settings.RUNNINGMODE == "development":
+        return ExchangeRatesAPI
+    return MockedExchangeRatesAPI

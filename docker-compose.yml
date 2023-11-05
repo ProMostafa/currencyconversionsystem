@@ -7,7 +7,7 @@ services:
     command: >
       sh -c "
       ./manage.py migrate &&
-      ./manage.py runserver 0.0.0.0:8000 --noreload"
+      ./manage.py runserver 0.0.0.0:8000"
 
     volumes:
       - .:/currencyconversionsystem
@@ -70,6 +70,17 @@ services:
       - POSTGRES_DB=postgres
     expose:
       - 5432
+
+  test-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: >
+      sh -c "pytest"
+    env_file:
+      - .env
+    depends_on:
+      - db
 
 volumes:
   postgres_data:
