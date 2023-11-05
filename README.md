@@ -58,7 +58,7 @@ By follow separation of concerns principle this has more benefits for example in
 main project database
 
 ## redis
-use redis in two usecase 
+redis usecase 
 1. Using as Broker for celery
 1. implement simple cache mechanism (later)
 2. using redis lock to prevent race condition (if occurrence later)
